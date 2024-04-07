@@ -1,7 +1,7 @@
 # Amazon Sales Dataset
 ## Source: [Kaggle.com](https://www.kaggle.com/datasets/karkavelrajaj/amazon-sales-dataset)
 ## Introduction
-This analysis presents the sales overview and trends of the dataset above. The sales overview is by product, size, region, shipping methods, and trends over the period of the dataset.
+This analysis presents the sales overview and trends of the dataset above. The sales overview is by product, size, region, shipping methods, and trends for the dataset.
 ## Datacard
 - product_id - Product ID
 - product_name - Name of the Product
