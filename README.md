@@ -20,6 +20,6 @@ This analysis presents the sales overview and trends of the dataset above. The s
 - img_link - Image Link of the Product
 - product_link - Official Website Link of the Product
 ## Entity Relationship Diagram
-![Entity Relationship Diagram.](/assets/images/ProjectERD.pgerd)
+![Entity Relationship Diagram.](ProjectERD.png)
 - ### Why I Picked This Dataset
 I am curious about how businesses perform in commercial markets based on regions and product categories, and Amazon, being a multi-national company in e-commerce fits that profile. I analyzed this dataset to sharpen my skills in recommendation systems, which I believe.
