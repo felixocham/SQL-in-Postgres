@@ -1,4 +1,4 @@
-# Northwind and pubs sample databases
+# Northwind and Pubs Sample Databases
 ## Source: [Open source projects and samples from Microsoft](https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs)
 ## Introduction
 This analysis presents the sales data on various products, years, and shipping methods.
