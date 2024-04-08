@@ -1,64 +1,40 @@
-# Amazon Sales Dataset
-## Source: [Kaggle.com](https://www.kaggle.com/datasets/karkavelrajaj/amazon-sales-dataset)
+# Northwind and pubs sample databases
+## Source: [Open source projects and samples from Microsoft](https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs)
 ## Introduction
-This analysis presents the sales overview and trends of the dataset above. The sales overview is by product, size, region, shipping methods, and trends for the dataset.
-## Datacard
-- product_id - Product ID
-- product_name - Name of the Product
-- category - Category of the Product
-- discounted_price - Discounted Price of the Product
-- actual_price - Actual Price of the Product
-- discount_percentage - Percentage of Discount for the Product
-- rating - Rating of the Product
-- rating_count - Number of people who voted for the Amazon rating
-- about_product - Description about the Product
-- user_id - ID of the user who wrote review for the Product
-- user_name - Name of the user who wrote review for the Product
-- review_id - ID of the user review
-- review_title - Short review
-- review_content - Long review
-- img_link - Image Link of the Product
-- product_link - Official Website Link of the Product
+This analysis presents the sales data on various products, years, and shipping methods.
+The original source is for Microsoft SQL Server, but I used Postgres.
 ## Entity Relationship Diagram (ERD)
-![Entity Relationship Diagram.](ProjectERD.png)
+![Entity Relationship Diagram.](ERD-diagram.png)
 ## Data Analysis
 1. Statistics
 ```
-SELECT ship_state AS "Ship_State"
-		,size AS "Size"
-  	,SUM(gross_sales) AS "Total_Sales"
-  	,SUM(no_of_transactions) AS "Total_Transactions"
+,SUM(revenue) AS monthly_revenue
+	   ,ROUND(AVG(revenue),2) AS avg_monthly_revenue
 ```
 2. Views
 ```
-CREATE OR REPLACE VIEW processes AS
-SELECT promotion
-		,sales_channel
+CREATE OR REPLACE VIEW employee_details AS
+SELECT empid
+		,CONCAT(titleofcourtesy,' ',lastname,' ',firstname) AS "Name"
 ```
-3. Database
+3. Partition
 ```
-CREATE TABLE location (
-	loc_id varchar(100) PRIMARY KEY
+WITH prod_rank AS 
+(SELECT *
+	,RANK()OVER(PARTITION BY categoryname ORDER BY gross_revenue)
 ```
-4. Window Functions
+4. Joins
 ```
-GROUP BY s1.date
-	,s1.month_no...
-WINDOW w AS (PARTITION BY month_no ORDER BY s1.date ROWS BETWEEN UNBOUNDED preceding AND UNBOUNDED FOLLOWING);
+FROM orderdetail ord
+JOIN salesorder sal
+					ON ord.orderid = sal.orderid
 ```
-5. Joins
+5. Filtering and Aggregation
 ```
-FROM orders ord
-LEFT JOIN location loc
-						ON ord.loc_id = loc.loc_id
-```
-6. Filtering and Aggregation
-```
-GROUP BY 1,2
-HAVING SUM(gross_sales) > 0
-ORDER BY total_sales DESC
-LIMIT 10;
+ ,SUM(revenue) AS gross_revenue 
+FROM prod_level
+GROUP BY ROLLUP (categoryname
+	   			,productname)
 ```
 ### Why I Picked This Dataset
-I am curious about how businesses perform in commercial markets based on regions and product categories, and Amazon, being a multi-national company in e-commerce fits that profile. I analyzed this dataset to sharpen my skills in recommendation systems.
-
+Northwind has a wide variety of tables, which I needed to use to explore my skills in joining and analyzing data from different tables.
