@@ -1,4 +1,4 @@
-# SQL in Postgress Projects
+# SQL in PostgreSQL Projects
 ## Table of Contents
 [Amazon Sales](https://github.com/felixocham/SQL-in-Postgres/tree/main/Amazon%20India%20Sales)
 
